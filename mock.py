@@ -7,7 +7,7 @@ from PIL import Image
 #treat is the treatmen of the plant
 def get_plants_for_dropdown(plot, geno, treat):
         plantIn = st.selectbox(
-            "Plants",
+            "Plant Name",
             ("plant1","plant2","plant3"))
         return plantIn
 
@@ -46,8 +46,7 @@ with col1:
     
 with col2:
     st.header("PointCloud")
-    plant = st.text_input("Plant Name",
-                              "Plant 1")
+    nameIn = st.text_input("Plant Name")
     #st.selectbox(x, y) creates a dropdown menue
     #x is the title for the dropdown box
     #y is the different dropdown options
@@ -61,9 +60,11 @@ with col2:
     genoIn = st.selectbox(
         "Genotype",
         ("-","gen1", "gen2", "gen3", "gen4"))
-    if(plotIn != "-" or treatmentIn != "-" or genoIn != "-"):
+    if((plotIn != "-" or treatmentIn != "-" or genoIn != "-") and nameIn == ""):
         plant = get_plants_for_dropdown(plotIn, treatmentIn, genoIn)
     
 
     image2 = Image.open("pics/lettuceTemp.jpg")
     st.image(image2)
+
+st.button("Re-Run");
